@@ -14,7 +14,7 @@ public class HomeController : Controller
         _context = temp;
     }
 
-    public IActionResult Index()
+    public IActionResult Quadrants()
     {
         return View();
     }
