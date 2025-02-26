@@ -6,26 +6,17 @@ namespace Mission08_Team0209.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    private TaskCollectionContext _context;
+
+    public HomeController(TaskCollectionContext temp) //constructor
     {
-        _logger = logger;
+        _context = temp;
     }
 
     public IActionResult Index()
     {
         return View();
     }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    
 }
