@@ -1,0 +1,55 @@
+﻿@page
+@model Mission08_Team0209.Models.Task
+
+<form method="post">
+    <!-- Hidden TaskId Field -->
+    <input type="hidden" asp-for="TaskId" />
+
+    <!-- CATEGORY Dropdown -->
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" class="form-control" required>
+            <option value="">Select Category</option>
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.CategoryId" selected="@(category.CategoryId == Model.CategoryId ? "selected" : null)">
+                    @category.CategoryName
+                </option>
+            }
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <!-- TASK NAME -->
+    <div class="form-group">
+        <label asp-for="TaskName">Name</label>
+        <input asp-for="TaskName" class="form-control" maxlength="200" required />
+        <span asp-validation-for="TaskName" class="text-danger"></span>
+    </div>
+
+    <!-- DUE DATE -->
+    <div class="form-group">
+        <label asp-for="DueDate">Due Date</label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+        <span asp-validation-for="DueDate" class="text-danger"></span>
+    </div>
+
+    <!-- QUADRANT -->
+    <div class="form-group">
+        <label asp-for="QuandrantNumber"> Select Quadrant</label>
+        <select asp-for="QuandrantNumber" class="form-control" required>
+            <option value="1">1 (Important / Urgent)</option>
+            <option value="2">2 (Important / Not Urgent)</option>
+            <option value="3">3 (Not Important / Urgent)</option>
+            <option value="4">4 (Not Important / Not Urgent)</option>
+            
+        </select>
+        <span asp-validation-for="QuandrantNumber" class="text-danger"></span>
+    </div>
+
+    <br />
+    <!-- BUTTONS -->
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a class="btn btn-secondary" href="@Url.Action("ViewMovies", "Home")">Cancel</a>
+</form>
+
