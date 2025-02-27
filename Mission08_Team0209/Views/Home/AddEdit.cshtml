@@ -36,7 +36,7 @@
 
     <!-- QUADRANT -->
     <div class="form-group">
-        <label asp-for="QuandrantNumber"> Select Quadrant</label>
+        <label asp-for="QuandrantNumber">Select Quadrant</label>
         <select asp-for="QuandrantNumber" class="form-control" required>
             <option value="1">1 (Important / Urgent)</option>
             <option value="2">2 (Important / Not Urgent)</option>
@@ -47,9 +47,19 @@
         <span asp-validation-for="QuandrantNumber" class="text-danger"></span>
     </div>
 
+    <!-- COMPLETED -->
+    <div class="form-group">
+        <label asp-for="IsCompleted">Tast Status</label>
+        <select asp-for="IsCompleted" class="form-control" required>
+            <option value="True">Completed</option>
+            <option value="False">Not Completed</option>
+        </select>
+        <span asp-validation-for="IsCompleted" class="text-danger"></span>
+    </div>
+
     <br />
     <!-- BUTTONS -->
     <button type="submit" class="btn btn-success">Save Changes</button>
-    <a class="btn btn-secondary" href="@Url.Action("ViewMovies", "Home")">Cancel</a>
+    <a class="btn btn-secondary" href="@Url.Action("Quadrants", "Home")">Cancel</a>
 </form>
 
