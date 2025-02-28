@@ -7,13 +7,14 @@ namespace Mission08_Team0209.Controllers;
 public class HomeController : Controller
 {
 
-    private TaskCollectionContext _context;
+    private ITaskRepository _repo;
 
-    public HomeController(TaskCollectionContext temp) //constructor
+    public HomeController(ITaskRepository temp) //constructor
     {
-        _context = temp;
+        _repo = temp;
     }
 
+    //karen look at the repostiory pattern video #4 &#5 to fix the homecontroller stuff
     public IActionResult Quadrants()
     {
         return View();
