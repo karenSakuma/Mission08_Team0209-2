@@ -1,6 +1,13 @@
 ﻿@page
 @model Mission08_Team0209.Models.Task
 
+@{
+    // Check if it's an Add or Edit operation
+    bool isEditMode = Model.TaskId > 0;
+}
+
+<h2>@(isEditMode ? "Edit Task" : "Add New Task")</h2>
+
 <form method="post">
     <!-- Hidden TaskId Field -->
     <input type="hidden" asp-for="TaskId" />
@@ -42,14 +49,13 @@
             <option value="2">2 (Important / Not Urgent)</option>
             <option value="3">3 (Not Important / Urgent)</option>
             <option value="4">4 (Not Important / Not Urgent)</option>
-            
         </select>
         <span asp-validation-for="QuandrantNumber" class="text-danger"></span>
     </div>
 
     <!-- COMPLETED -->
     <div class="form-group">
-        <label asp-for="IsCompleted">Tast Status</label>
+        <label asp-for="IsCompleted">Task Status</label>
         <select asp-for="IsCompleted" class="form-control" required>
             <option value="True">Completed</option>
             <option value="False">Not Completed</option>
@@ -59,7 +65,8 @@
 
     <br />
     <!-- BUTTONS -->
-    <button type="submit" class="btn btn-success">Save Changes</button>
+    <button type="submit" class="btn btn-success">@((isEditMode) ? "Update Task" : "Add Task")</button>
     <a class="btn btn-secondary" href="@Url.Action("Quadrants", "Home")">Cancel</a>
 </form>
+
 
