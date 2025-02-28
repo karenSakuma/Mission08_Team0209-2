@@ -11,6 +11,9 @@ builder.Services.AddDbContext<TaskCollectionContext>(options =>
     
 });
 
+builder.Services.AddScoped<ITaskRepository, EFTaskRepository>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
