@@ -1,10 +1,10 @@
 namespace Mission08_Team0209.Models;
 
-public class EFTaskRepository : ITaskRepository
+public class EfTaskRepository : ITaskRepository
 {
     private TaskCollectionContext _context;
 
-    public EFTaskRepository(TaskCollectionContext temp)
+    public EfTaskRepository(TaskCollectionContext temp)
     {
         _context = temp;
     }

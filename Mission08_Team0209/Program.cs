@@ -11,7 +11,7 @@ builder.Services.AddDbContext<TaskCollectionContext>(options =>
     
 });
 
-builder.Services.AddScoped<ITaskRepository, EFTaskRepository>();
+builder.Services.AddScoped<ITaskRepository, EfTaskRepository>();
 
 
 var app = builder.Build();
