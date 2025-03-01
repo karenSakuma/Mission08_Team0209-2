@@ -5,9 +5,7 @@ namespace Mission08_Team0209.Models;
 public interface ITaskRepository
 {
     List<Task> Tasks { get; }
-    
-    Task? GetTaskById(int id); // Retrieve a task by ID
-    List<Category> GetCategories(); // Fetch categories
+    List<Category> Categories { get; } // Fetch categories
     
     public void AddTask(Task task);
     
