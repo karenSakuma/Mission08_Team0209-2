@@ -10,6 +10,16 @@ public class EfTaskRepository : ITaskRepository
     }
     public List<Task> Tasks => _context.Tasks.ToList();
 
+    public Task? GetTaskById(int id)
+    {
+        return _context.Tasks.FirstOrDefault(t => t.TaskId == id);
+    }
+
+    public List<Category> GetCategories()
+    {
+        return _context.Categories.ToList();
+    }
+
     //add task 
     public void AddTask(Task task)
     {
