@@ -1,46 +1,39 @@
-﻿@page
-@model Mission08_Team0209.Models.Task
-
+﻿@model Mission08_Team0209.Models.Task
 @{
-    // Check if it's an Add or Edit operation
-    bool isEditMode = Model.TaskId > 0;
+    bool isEditMode = Model?.TaskId > 0; // Avoid null reference errors
 }
-
 <h2>@(isEditMode ? "Edit Task" : "Add New Task")</h2>
-
 <form method="post">
-    <!-- Hidden TaskId Field -->
     <input type="hidden" asp-for="TaskId" />
-
     <!-- CATEGORY Dropdown -->
     <div class="form-group">
         <label asp-for="CategoryId">Category</label>
         <select asp-for="CategoryId" class="form-control" required>
             <option value="">Select Category</option>
-            @foreach (var category in ViewBag.Categories)
+            @if (ViewBag.Categories != null)
             {
-                <option value="@category.CategoryId" selected="@(category.CategoryId == Model.CategoryId ? "selected" : null)">
-                    @category.CategoryName
-                </option>
+                foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.CategoryId" selected="@(category.CategoryId == Model?.CategoryId ? "selected" : null)">
+                        @category.CategoryName
+                    </option>
+                }
             }
         </select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
-
     <!-- TASK NAME -->
     <div class="form-group">
         <label asp-for="TaskName">Name</label>
         <input asp-for="TaskName" class="form-control" maxlength="200" required />
         <span asp-validation-for="TaskName" class="text-danger"></span>
     </div>
-
     <!-- DUE DATE -->
     <div class="form-group">
         <label asp-for="DueDate">Due Date</label>
         <input asp-for="DueDate" type="date" class="form-control" />
         <span asp-validation-for="DueDate" class="text-danger"></span>
     </div>
-
     <!-- QUADRANT -->
     <div class="form-group">
         <label asp-for="QuandrantNumber">Select Quadrant</label>
@@ -52,7 +45,6 @@
         </select>
         <span asp-validation-for="QuandrantNumber" class="text-danger"></span>
     </div>
-
     <!-- COMPLETED -->
     <div class="form-group">
         <label asp-for="IsCompleted">Task Status</label>
@@ -62,9 +54,7 @@
         </select>
         <span asp-validation-for="IsCompleted" class="text-danger"></span>
     </div>
-
     <br />
-    <!-- BUTTONS -->
     <button type="submit" class="btn btn-success">@((isEditMode) ? "Update Task" : "Add Task")</button>
     <a class="btn btn-secondary" href="@Url.Action("Quadrants", "Home")">Cancel</a>
 </form>
